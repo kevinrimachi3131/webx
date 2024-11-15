@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Traimmsa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select, button {
+            margin: 5px 0;
+            padding: 10px;
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registro de Almacén - TRAIMMSA</h1>
+    <form id="registroForm">
+        <label for="item">Nombre del Artículo:</label><br>
+        <input type="text" id="item" name="item" required><br>
+        
+        <label for="cantidad">Cantidad:</label><br>
+        <input type="number" id="cantidad" name="cantidad" required><br>
+
+        <label for="NumeroCod">numero de cotisacion</label><br>
+        <input type="number"id="NumeroCod" name="NumeroCod"required><br>
+
+
+        <label for="categoria">Categoría:</label><br>
+        <select id="categoria" name="categoria" required>
+            <option value="">Seleccione una categoría</option>
+            <option value="Consumible">Consumible</option>
+            <option value="EPP">EPP</option>
+        </select><br>
+        
+        <label for="fecha">Fecha de Registro:</label><br>
+        <input type="date" id="fecha" name="fecha" required><br>
+        
+        <button type="submit">Agregar Registro</button>
+    </form>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Artículo</th>
+                <th>Cantidad</th>
+                <th>Categoría</th>
+                <th>Fecha de Registro</th>
+                <th>numero de cotizacion</th>
+            </tr>
+        </thead>
+        <tbody id="tablaRegistros">
+            <!-- Los registros se agregarán dinámicamente aquí -->
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById('registroForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const item = document.getElementById('item').value;
+            const cantidad = document.getElementById('cantidad').value;
+            const categoria = document.getElementById('categoria').value;
+            const fecha = document.getElementById('fecha').value;
+            const NumeroCod = document.getElementById('NumeroCod').value;
+
+            const tabla = document.getElementById('tablaRegistros');
+            const nuevaFila = tabla.insertRow();
+
+            nuevaFila.innerHTML = `
+                <td>${item}</td>
+                <td>${cantidad}</td>
+                <td>${categoria}</td>
+                <td>${fecha}</td>
+                <td>${NumeroCod}<td>
+            `;
+
+            // Limpiar formulario
+            document.getElementById('registroForm').reset();
+        });
+    </script>
+</body>
+</html>
